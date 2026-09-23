@@ -97,18 +97,6 @@ img {
   text-decoration: none;
 }
 
-.brand-mark {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  font-family: var(--serif);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-}
-
 .brand-copy {
   display: grid;
   line-height: 1.15;

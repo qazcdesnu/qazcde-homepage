@@ -7,8 +7,8 @@
 
     <div class="footer-links">
       {{ with .Site.Params.social.github }}<a href="{{ . }}" rel="me noopener" target="_blank">GitHub</a>{{ end }}
-      <a href="{{ "/blog/" | relURL }}">Blog</a>
-      <a href="{{ "/cv/" | relURL }}">CV</a>
+      <a href="{{ "blog/" | relURL }}">Blog</a>
+      <a href="{{ "cv/" | relURL }}">CV</a>
     </div>
 
     <p class="footer-note">© {{ now.Year }} {{ .Site.Params.author }}</p>

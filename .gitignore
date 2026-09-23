@@ -1,4 +1,9 @@
 /public/
 /resources/_gen/
-.hugo_build.lock
+
+# Hugo build lock
+/.hugo_build.lock
+
+# OS-generated files
 .DS_Store
+Thumbs.db
