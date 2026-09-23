@@ -1,0 +1,67 @@
+{{ define "main" }}
+  <section class="hero-section">
+    <div class="hero-copy">
+      <p class="eyebrow">Data Science · AI Research</p>
+      <h1>{{ .Site.Params.author }}</h1>
+      <div class="hero-lede">{{ .Content }}</div>
+      <div class="hero-actions">
+        <a class="button button--dark" href="{{ "/research/" | relURL }}">Explore research <span aria-hidden="true">→</span></a>
+        <a class="button button--text" href="{{ "/blog/" | relURL }}">Read the notes <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <aside class="hero-aside">
+      <div class="identity-card">
+        <p class="eyebrow">Currently</p>
+        <p class="identity-role">{{ .Site.Params.role }}</p>
+        <p class="identity-institution">{{ .Site.Params.institution }}</p>
+        <div class="identity-rule"></div>
+        <p class="identity-note">연구와 공부의 과정을 기록하고, 복잡한 아이디어를 명료하게 정리합니다.</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="home-section home-grid">
+    <div class="home-main">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Selected interests</p>
+          <h2>What I work on</h2>
+        </div>
+        <a class="text-link" href="{{ "/research/" | relURL }}">All research <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="research-grid">
+        {{ range $index, $item := .Site.Params.research }}
+          <article class="research-card">
+            <span class="research-index">0{{ add $index 1 }}</span>
+            <h3>{{ $item.name }}</h3>
+            <p>{{ $item.description }}</p>
+          </article>
+        {{ end }}
+      </div>
+
+      <div class="section-heading section-heading--posts">
+        <div>
+          <p class="eyebrow">From the notebook</p>
+          <h2>Latest notes</h2>
+        </div>
+        <a class="text-link" href="{{ "/blog/" | relURL }}">View all <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="post-list">
+        {{ $posts := where .Site.RegularPages "Section" "blog" }}
+        {{ range first 3 ($posts.ByDate.Reverse) }}
+          {{ partial "post-card.html" . }}
+        {{ else }}
+          <div class="empty-state">
+            <p class="eyebrow">Coming soon</p>
+            <p>첫 번째 연구 노트를 준비하고 있습니다. 블로그 글이 추가되면 이곳에 최신 글이 표시됩니다.</p>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ partial "sidebar.html" . }}
+  </section>
+{{ end }}

@@ -1,0 +1,17 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ .Site.Params.author }} home">
+      <span class="brand-mark" aria-hidden="true">KJ</span>
+      <span class="brand-copy">
+        <strong>{{ .Site.Params.author }}</strong>
+        <small>Data Science · AI Research</small>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="주요 메뉴">
+      {{ range .Site.Menus.main }}
+        <a class="{{ if or (and $.IsHome (eq .URL "/")) ($.IsMenuCurrent "main" .) }}is-active{{ end }}" href="{{ .URL | relURL }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>

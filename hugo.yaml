@@ -1,0 +1,53 @@
+baseURL: "https://qazcdesnu.github.io/qazcde-homepage/"
+languageCode: "ko-KR"
+defaultContentLanguage: "ko"
+title: "김진웅 — Data Science & AI Research"
+enableRobotsTXT: true
+
+pagination:
+  pagerSize: 10
+
+taxonomies:
+  tag: tags
+  category: categories
+
+params:
+  author: "김진웅"
+  role: "Ph.D. Student in Data Science"
+  institution: "데이터사이언스학과"
+  description: "데이터사이언스학과 박사과정에서 대규모 언어 모델과 인공지능을 연구하고 있습니다."
+  research:
+    - name: "Large Language Models"
+      description: "대규모 언어 모델의 능력과 한계를 탐구합니다."
+    - name: "Generative AI"
+      description: "생성형 인공지능의 활용과 평가를 연구합니다."
+    - name: "Data Science"
+      description: "데이터에서 의미 있는 지식과 패턴을 발견합니다."
+  social:
+    github: "https://github.com/qazcdesnu"
+
+menu:
+  main:
+    - name: "Home"
+      url: "/"
+      weight: 10
+    - name: "About"
+      url: "/about/"
+      weight: 20
+    - name: "Research"
+      url: "/research/"
+      weight: 30
+    - name: "Publications"
+      url: "/publications/"
+      weight: 40
+    - name: "Blog"
+      url: "/blog/"
+      weight: 50
+    - name: "CV"
+      url: "/cv/"
+      weight: 60
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

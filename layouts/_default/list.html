@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <section class="page-shell">
+    <header class="page-header">
+      <p class="eyebrow">Archive</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="page-description">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="content-grid">
+      <div class="article-content prose">
+        {{ .Content }}
+      </div>
+      {{ partial "sidebar.html" . }}
+    </div>
+  </section>
+{{ end }}

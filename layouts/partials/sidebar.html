@@ -1,0 +1,20 @@
+<aside class="sidebar-stack">
+  <section class="side-card">
+    <p class="eyebrow">Research focus</p>
+    <ul class="focus-list">
+      {{ range .Site.Params.research }}
+        <li>
+          <strong>{{ .name }}</strong>
+          <span>{{ .description }}</span>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+
+  <section class="side-card side-card--quiet">
+    <p class="eyebrow">Elsewhere</p>
+    {{ with .Site.Params.social.github }}
+      <a class="text-link" href="{{ . }}" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    {{ end }}
+  </section>
+</aside>

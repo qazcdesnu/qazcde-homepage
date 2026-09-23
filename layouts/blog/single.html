@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <article class="page-shell post-page">
+    <header class="post-header">
+      <p class="post-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+        {{ with .ReadingTime }}<span aria-hidden="true">·</span><span>{{ . }} min read</span>{{ end }}
+      </p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+      {{ with .Params.tags }}
+        <ul class="tag-list" aria-label="Tags">
+          {{ range . }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      {{ end }}
+    </header>
+
+    <div class="content-grid content-grid--post">
+      <div class="article-content prose">
+        {{ .Content }}
+      </div>
+      {{ partial "sidebar.html" . }}
+    </div>
+  </article>
+{{ end }}
