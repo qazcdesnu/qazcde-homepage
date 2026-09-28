@@ -2,6 +2,12 @@
 
 Hugo로 만든 개인 연구자 포트폴리오·블로그 사이트입니다.
 
+## 사이트 주소
+
+https://qazcdesnu.github.io/qazcde-homepage/
+
+GitHub Pages의 프로젝트 사이트이므로 `qazcdesnu.github.io` 아래 저장소 이름(`/qazcde-homepage/`) 하위 경로로 서비스됩니다. 커스텀 도메인은 연결되어 있지 않으며, `hugo.yaml`의 `baseURL`도 이 주소로 설정되어 있습니다.
+
 ## 로컬 실행
 
 ```bash
