@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <section class="page-shell">
+    <header class="page-header page-header--wide">
+      <p class="eyebrow">Paper notes</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="page-description">{{ . }}</p>{{ end }}
+      <div class="prose page-intro">{{ .Content }}</div>
+    </header>
+
+    <div class="content-grid content-grid--blog">
+      <div class="note-list">
+        {{ range .RegularPages.ByDate.Reverse }}
+          {{ partial "note-row.html" . }}
+        {{ else }}
+          <div class="empty-state">
+            <p class="eyebrow">No notes yet</p>
+            <p>아직 정리한 논문이 없습니다. 첫 번째 노트를 준비하고 있습니다.</p>
+          </div>
+        {{ end }}
+      </div>
+      {{ partial "sidebar.html" . }}
+    </div>
+  </section>
+{{ end }}

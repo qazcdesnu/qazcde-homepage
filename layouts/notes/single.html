@@ -1,0 +1,38 @@
+{{ define "main" }}
+  <article class="page-shell post-page">
+    <header class="post-header">
+      <p class="eyebrow">Paper note</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.authors }}<p class="note-authors note-authors--lead">{{ . }}</p>{{ end }}
+      <p class="post-meta">
+        {{ with .Params.venue }}<span>{{ . }}{{ with $.Params.year }} {{ . }}{{ end }}</span><span aria-hidden="true">·</span>{{ end }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }} 읽음</time>
+      </p>
+      {{ with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+
+      {{ if or .Params.explorable .Params.paper_url }}
+        <div class="note-actions">
+          {{ with .Params.explorable }}
+            <a class="button button--dark" href="{{ . }}" target="_blank" rel="noopener">Explorable 열기 <span aria-hidden="true">↗</span></a>
+          {{ end }}
+          {{ with .Params.paper_url }}
+            <a class="button button--text" href="{{ . }}" target="_blank" rel="noopener">원문 보기 <span aria-hidden="true">↗</span></a>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      {{ with .Params.tags }}
+        <ul class="tag-list" aria-label="Tags">
+          {{ range . }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      {{ end }}
+    </header>
+
+    <div class="content-grid content-grid--post">
+      <div class="article-content prose">
+        {{ .Content }}
+      </div>
+      {{ partial "sidebar.html" . }}
+    </div>
+  </article>
+{{ end }}

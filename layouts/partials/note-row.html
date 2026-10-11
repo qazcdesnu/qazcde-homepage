@@ -1,0 +1,21 @@
+<article class="note-row">
+  <p class="note-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }} 읽음</time>
+    {{ with .Params.venue }}<span aria-hidden="true">·</span><span>{{ . }}{{ with $.Params.year }} {{ . }}{{ end }}</span>{{ end }}
+  </p>
+  <h3>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ with .Params.explorable }}<span class="note-badge">Explorable <span aria-hidden="true">↗</span></span>{{ end }}
+  </h3>
+  {{ with .Params.authors }}<p class="note-authors">{{ . }}</p>{{ end }}
+  {{ with .Params.summary }}
+    <p class="note-summary">{{ . }}</p>
+  {{ else }}
+    <p class="note-summary">{{ .Summary | plainify | truncate 150 }}</p>
+  {{ end }}
+  {{ with .Params.tags }}
+    <ul class="tag-list" aria-label="Tags">
+      {{ range first 4 . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+  {{ end }}
+</article>

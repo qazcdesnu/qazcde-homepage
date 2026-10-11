@@ -40,6 +40,9 @@ menu:
     - name: "Publications"
       url: "/publications/"
       weight: 40
+    - name: "Paper Notes"
+      url: "/notes/"
+      weight: 45
     - name: "Blog"
       url: "/blog/"
       weight: 50

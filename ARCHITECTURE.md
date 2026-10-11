@@ -26,12 +26,16 @@
 ```text
 .
 ├── archetypes/
-│   └── blog.md                 # 새 블로그 글의 기본 front matter
+│   ├── blog.md                 # 새 블로그 글의 기본 front matter
+│   └── notes.md                # 새 논문 노트의 기본 front matter
 ├── content/
 │   ├── _index.md               # 홈페이지 소개 문구
 │   ├── about/_index.md         # 자기소개
 │   ├── research/_index.md      # 연구 관심 분야
 │   ├── publications/_index.md  # 논문 목록
+│   ├── notes/
+│   │   ├── _index.md           # 논문 노트 목록 소개
+│   │   └── draco-2019.md       # 개별 논문 노트
 │   ├── blog/
 │   │   └── _index.md           # 블로그 목록 소개
 │   └── cv/_index.md            # CV 안내
@@ -43,12 +47,16 @@
 │   ├── blog/
 │   │   ├── list.html            # 블로그 목록
 │   │   └── single.html          # 블로그 글 본문
+│   ├── notes/
+│   │   ├── list.html            # 논문 노트 목록
+│   │   └── single.html          # 논문 노트 본문
 │   ├── 404.html                 # 존재하지 않는 페이지
 │   ├── index.html               # 홈페이지
 │   └── partials/
 │       ├── footer.html          # 공통 footer
 │       ├── head.html            # 메타 태그와 CSS
 │       ├── header.html          # 이름과 상단 네비게이션
+│       ├── note-row.html        # 논문 노트 목록 행
 │       ├── post-card.html       # 블로그 글 카드
 │       └── sidebar.html         # 연구 관심 분야와 링크
 ├── static/
@@ -67,6 +75,8 @@
 | `/about/` | 짧은 자기소개와 연구자로서의 방향 |
 | `/research/` | LLM, 생성형 AI, 데이터사이언스 관심 분야 |
 | `/publications/` | 논문과 발표 목록을 추가할 자리 |
+| `/notes/` | 읽고 정리한 논문 목록 |
+| `/notes/<slug>/` | 개별 논문 노트 본문과 explorable 링크 |
 | `/blog/` | Markdown 글 목록 |
 | `/blog/<slug>/` | 개별 글 본문 |
 | `/cv/` | CV 파일과 경력 정보를 추가할 자리 |
@@ -93,7 +103,33 @@ tags: ["LLM", "Research"]
 
 초안은 `draft: true`로 작성하고, 게시할 때 `draft: false`로 변경한다.
 
-## 6. 배포 흐름
+## 6. 논문 노트 작성 규칙
+
+`Blog`는 생각과 에세이를, `Paper Notes`는 논문 한 편 단위의 기록을 담당한다. 새 노트는 다음 명령으로 시작한다.
+
+```bash
+hugo new content/notes/draco-2019.md
+```
+
+front matter의 각 항목은 목록과 본문 상단의 메타데이터로 그대로 쓰인다.
+
+```yaml
+---
+title: "논문 제목"
+date: 2026-10-11          # 읽은 날짜. 목록은 이 날짜의 역순으로 정렬된다
+authors: "First Author et al."
+venue: "IEEE VIS"
+year: 2019                # 논문 발표 연도
+paper_url: "https://doi.org/..." # 원문 링크. 있으면 '원문 보기' 버튼이 생긴다
+explorable: "https://..." # 인터랙티브 정리 링크. 있으면 목록에 Explorable 배지가 붙는다
+summary: "목록에 표시할 한 문장 요약"
+tags: ["visualization"]
+---
+```
+
+`paper_url`은 출판사 사이트 주소보다 영구 식별자인 DOI(`https://doi.org/...`)를 우선 사용한다. `explorable`과 `paper_url`은 비워 두어도 되며, 비어 있으면 해당 버튼과 배지는 렌더링되지 않는다. 외부 링크는 모두 `target="_blank" rel="noopener"`로 연다.
+
+## 7. 배포 흐름
 
 1. `main` 브랜치에 변경 사항을 push한다.
 2. GitHub Actions가 Hugo를 설치하고 `hugo --minify`를 실행한다.
@@ -102,7 +138,7 @@ tags: ["LLM", "Research"]
 
 저장소의 **Settings → Pages → Source**는 `GitHub Actions`로 설정해야 한다.
 
-## 7. 유지보수 원칙
+## 8. 유지보수 원칙
 
 - 개인 정보와 링크는 `hugo.yaml`의 `params`에서 관리한다.
 - 반복되는 HTML은 `layouts/partials/`에 둔다.
